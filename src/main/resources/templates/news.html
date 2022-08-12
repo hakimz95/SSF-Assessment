@@ -20,9 +20,9 @@
 </head>
 <body>
     <h1>Crypto News of the Day</h1>
-    <form action="" th:each="fields : *{fields}">
+    <form action="">
         <input type="submit" value="Save">
-        <div class="card">
+        <div class="card" th:each="fields : *{fields}">
             <img th:src = "${fields.imageurl}" width="200" height="200/">
             <div class="container">
                 <p>
