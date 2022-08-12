@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSF-ASSESSMENT</title>
+
+    <style>
+        .card {
+          border: 1px solid black;
+          width: 90%;
+          display: grid;
+          grid-template-columns: 0.5fr 1.5fr;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crypto News of the Day</h1>
+    <form action="" th:each="fields : *{fields}">
+        <input type="submit" value="Save">
+        <div class="card">
+            <img th:src = "${fields.imageurl}" width="200" height="200/">
+            <div class="container">
+                <p>
+                    Id: 
+                    <span th:text="${fields.id}"></span>
+                </p>
+    
+                <p>
+                    <b>
+                        <span th:text="${fields.title}"></span>
+                    </b>
+                </p>
+    
+                <p>
+                    <span th:text="${fields.body}"></span>
+                </p>
+    
+                <p>
+                    Categories: 
+                    <span th:text="${fields.categories}"></span>
+                </p>
+    
+                <p>
+                    Tags: 
+                    <span th:text="${fields.tags}"></span>
+                </p>
+    
+                <p>
+                    Published: 
+                    <span th:text="${fields.publishedOn}"></span>
+                </p>
+    
+                <p>
+                    <span th:text="${fields.url}"></span>
+                </p>
+    
+                <input type="checkbox"><label>Save</label>
+    
+            </div>
+        </div>
+    </form>
+</body>
+</html>
