@@ -2,9 +2,6 @@ package ssf.assessment.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,10 +16,6 @@ public class NewsService {
     private static final Logger logger = LoggerFactory.getLogger(NewsService.class);
 
     private static String URL = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN";
-
-    @Autowired
-    @Qualifier("newsArticle")
-    RedisTemplate<String, Arrays> redisTemplate;
 
     public Arrays getArticles() {
         String apiKey = System.getenv("CRYPTO_COMPARE_API_KEY");
@@ -47,15 +40,5 @@ public class NewsService {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public int saveArticles(final Arrays ctc) {
-        logger.info("Save news > " + logger);
-        redisTemplate.opsForValue().set(ctc.getArticles(), ctc);
-        Arrays result = (Arrays) redisTemplate.opsForValue().get(ctc.getArticles());
-        if (result != null)
-            return 1;
-        return 0;
     }
 }
